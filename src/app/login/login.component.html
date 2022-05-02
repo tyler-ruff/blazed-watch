@@ -1,0 +1,21 @@
+<ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+    <ng-container *ngIf="auth.user$ | async as user">
+        <li class="flex">
+            <a routerLink="/dashboard" routerLinkActive="is-active" class="flex items-center px-4 -mb-1 py-5 border-b-2 border-transparent">
+                Dashboard
+            </a>
+            <button (click)="auth.logout({ returnTo: document.location.origin })" class="flex items-center px-4 py-5 -mb-1 border-b-1 hover:bg-red-400 hover:text-white border-transparent">
+                Logout
+            </button>
+        </li>
+    </ng-container>
+</ng-container>
+<ng-template #loggedOut>
+    <li class="flex">
+        <button (click)="auth.loginWithRedirect()" class="flex items-center px-4 -mb-1 py-5 border-b-2 border-transparent">
+            Login/Register
+        </button>
+    </li>
+</ng-template>
+
+
