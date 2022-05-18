@@ -1,26 +1,28 @@
 <header class="p-4 bg-coolGray-100 text-coolGray-800">
 	<div class="container flex justify-between h-16 mx-auto mb-5">
-		<a rel="noopener noreferrer" href="#" aria-label="Back to homepage" class="flex items-center p-2">
+		<a rel="noopener noreferrer" href="/home" aria-label="Back to homepage" class="flex items-center p-2">
             <img src="https://blazed.sirv.com/logo/Beaker-Dark.png?w=50&h=50" />
 		</a>
-		<ul class="items-stretch hidden space-x-3 md:flex">
-			<li class="flex">
-				<a rel="noopener noreferrer" routerLink="/home" routerLinkActive="is-active" class="flex items-center px-4 -mb-1 border-b-1 border-transparent">
-                    Home
-                </a>
-			</li>
-			<li class="flex">
-				<a rel="noopener noreferrer" routerLink="/browse" routerLinkActive="is-active" class="flex items-center px-4 -mb-1 border-b-1 border-transparent">
-                    Browse
-                </a>
-			</li>
-            <app-login></app-login>
-		</ul>
-		<button class="flex justify-end p-4 md:hidden">
-			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-			</svg>
+		<div class="header-menu">
+			<app-nav></app-nav>
+		</div>
+		<button (click)="burgerVisible = !burgerVisible" class="md:flex justify-end p-4 md:hidden">
+			<ng-container *ngIf="burgerVisible">
+				<svg width="45" height="45" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.646 5.646a.5.5 0 000 .708l8 8a.5.5 0 00.708-.708l-8-8a.5.5 0 00-.708 0z" clip-rule="evenodd"/>
+					<path fill-rule="evenodd" d="M14.354 5.646a.5.5 0 010 .708l-8 8a.5.5 0 01-.708-.708l8-8a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+				</svg>
+			</ng-container>
+			<ng-container *ngIf="!burgerVisible">
+				<svg width="45" height="45" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+					<path fill-rule="evenodd" d="M4.5 13.5A.5.5 0 015 13h10a.5.5 0 010 1H5a.5.5 0 01-.5-.5zm0-4A.5.5 0 015 9h10a.5.5 0 010 1H5a.5.5 0 01-.5-.5zm0-4A.5.5 0 015 5h10a.5.5 0 010 1H5a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+				</svg>
+			</ng-container>
 		</button>
 	</div>
+	<ng-container *ngIf="burgerVisible">
+		<div class="header-menu-mobile">
+			<app-nav></app-nav>
+		</div>
+	</ng-container>
     <hr />
 </header>

@@ -1,3 +1,13 @@
-.is-active{
-    border-bottom:1px solid blue;
+
+.header-menu-mobile{
+    display:none;
+}
+
+@media only screen and (max-width: 767px){
+    .header-menu-mobile{
+        display:block;
+    }
+    .header-menu{
+        display:none;
+    }
 }

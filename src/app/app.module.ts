@@ -22,6 +22,7 @@ import { LazyLoadDirective } from './lazyload.directive';
 import { LoadingComponent } from './loading/loading.component';
 import { BrowseComponent } from './browse/browse.component';
 import { LoginComponent } from './login/login.component';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { LoginComponent } from './login/login.component';
     UserdashComponent,
     LoadingComponent,
     BrowseComponent,
-    LoginComponent
+    LoginComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
