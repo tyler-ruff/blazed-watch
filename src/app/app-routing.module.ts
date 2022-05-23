@@ -11,10 +11,12 @@ import { UserdashComponent } from './userdash/userdash.component';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { AccountComponent } from './account/account.component';
 import { BrowseComponent } from './browse/browse.component';
+import { SingleComponent } from './single/single.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'search', component: SearchComponent },
+  { path: 'video', component: SingleComponent },
   { path: 'browse', component: BrowseComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard],
     children: [

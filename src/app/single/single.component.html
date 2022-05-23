@@ -1,1 +1,9 @@
-<p>single works!</p>
+<ng-container *ngIf="id">
+    
+</ng-container>
+<ng-container *ngIf="!id">
+	<!--
+		404: Document not found.
+	-->
+	<app-unknown></app-unknown>
+</ng-container>
