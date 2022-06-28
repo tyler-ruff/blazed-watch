@@ -23,6 +23,9 @@ import { LoadingComponent } from './loading/loading.component';
 import { BrowseComponent } from './browse/browse.component';
 import { LoginComponent } from './login/login.component';
 import { NavComponent } from './nav/nav.component';
+import { FavoritesComponent } from './favorites/favorites.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { StringLengthPipe } from './stringlength.pipe';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,10 @@ import { NavComponent } from './nav/nav.component';
     LoadingComponent,
     BrowseComponent,
     LoginComponent,
-    NavComponent
+    NavComponent,
+    StringLengthPipe,
+    FavoritesComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,

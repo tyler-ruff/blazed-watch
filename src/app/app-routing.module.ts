@@ -12,6 +12,8 @@ import { AuthGuard } from '@auth0/auth0-angular';
 import { AccountComponent } from './account/account.component';
 import { BrowseComponent } from './browse/browse.component';
 import { SingleComponent } from './single/single.component';
+import { FavoritesComponent } from './favorites/favorites.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -21,6 +23,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard],
     children: [
       { path: 'userdash', component: UserdashComponent },
+      { path: 'notifications', component: NotificationsComponent },
+      { path: 'favorites', component: FavoritesComponent },
       { path: 'videos', component: VideosComponent },
       { path: 'upload', component: UploadComponent },
       { path: 'account', component: AccountComponent },
