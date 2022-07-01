@@ -1,0 +1,7 @@
+textarea{
+    min-height:65px;
+}
+
+.video-title, .video-desc, .video-tags, .video-type{
+    width: 100%;
+}

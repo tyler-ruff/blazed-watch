@@ -26,6 +26,14 @@ import { NavComponent } from './nav/nav.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { StringLengthPipe } from './stringlength.pipe';
+import { GetMbPipe } from './getmb.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -47,11 +55,18 @@ import { StringLengthPipe } from './stringlength.pipe';
     LoginComponent,
     NavComponent,
     StringLengthPipe,
+    GetMbPipe,
     FavoritesComponent,
     NotificationsComponent
   ],
   imports: [
     BrowserModule,
+    MatChipsModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
     AuthModule.forRoot({
       domain: 'blazed.us.auth0.com',
       clientId: 'wyKjKTRlP070gqFIRUzCoaYjsfQ1ELnS'
@@ -62,7 +77,8 @@ import { StringLengthPipe } from './stringlength.pipe';
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

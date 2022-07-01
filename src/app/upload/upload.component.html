@@ -1,1 +1,164 @@
-<p>upload works!</p>
+<article>
+    <div class="p-6 bg-gray-100 text-gray-900">
+        <form method="post" action="" class="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
+            <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm bg-gray-50">
+                <div class="space-y-2 col-span-full lg:col-span-1">
+                    <p class="font-medium">
+                        Meta Data
+                    </p>
+                    <p class="text-xs">
+                        Basic metadata to help users identify the video and its contents.
+                    </p>
+                </div>
+                <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+                    <div class="col-span-full sm:col-span-5">
+                        <mat-form-field class="video-title" appearance="fill">
+                            <mat-label>
+                                Title
+                            </mat-label>
+                            <input required matInput id="video-title" placeholder="Video Title" value="">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-span-full sm:col-span-5">
+                        <mat-form-field class="video-desc" appearance="fill">
+                            <mat-label>
+                                Video Description
+                            </mat-label>
+                            <textarea required id="video-desc" rows="5" matInput></textarea>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-span-full sm:col-span-5">
+                        <mat-form-field class="video-type" appearance="fill">
+                            <mat-label>
+                                Type
+                            </mat-label>
+                            <mat-select required>
+                              <mat-option *ngFor="let type of videoTypes" [value]="type.value">
+                                {{type.name}}
+                              </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-span-full sm:col-span-5">
+                        <mat-form-field class="video-tags" appearance="fill">
+                            <mat-label>
+                                Tags
+                            </mat-label>
+                            <mat-chip-list #tagList aria-label="Tag selection">
+                              <mat-chip *ngFor="let tag of tags" (removed)="remove(tag)">
+                                {{tag.name}}
+                                <button matChipRemove>
+                                  <mat-icon>cancel</mat-icon>
+                                </button>
+                              </mat-chip>
+                              <input placeholder="New tag..."
+                                     [matChipInputFor]="tagList"
+                                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                     [matChipInputAddOnBlur]="addOnBlur"
+                                     (matChipInputTokenEnd)="add($event)">
+                            </mat-chip-list>
+                          </mat-form-field>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm bg-gray-50">
+                <div class="space-y-2 col-span-full lg:col-span-1">
+                    <p class="font-medium">
+                        Video File
+                    </p>
+                    <p class="text-xs">
+                        Upload your film, select its thumbnail, and get your work of art seen!
+                    </p>
+                </div>
+                <!--
+                    TODO:
+                    (1) Script that handles upload asyncronously
+                    (2) Script that takes four (4) screenshots of the video in various places, then populates the values of the thumbNails array
+                -->
+                <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+                    <div class="space-y-1 text-gray-800 col-span-full sm:col-span-5">
+                        <label for="video-file" class="block text-sm font-medium">
+                            Upload Video
+                        </label>
+                        <div class="flex">
+                            <input required type="file" accept="video/mp4,video/webm,video/mov" (change)="onUpload($event)" formControlName="video" name="file-video" id="video-file" class="w-full px-8 py-12 border-2 border-dashed rounded-md border-gray-300 text-gray-600 bg-gray-100">
+                        </div>
+                    </div>
+                    <ng-container *ngIf="fileChosen; then successBox"></ng-container>
+                    <ng-template #successBox>
+                        <div id="upload-success-message" class="col-span-full sm:col-span-5">
+                            <div class="col-span-full sm:col-span-5 flex w-full bg-white rounded-lg shadow-md dark:bg-gray-800">
+                                <div class="flex items-center justify-center w-12 bg-emerald-500">
+                                    <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z"/>
+                                    </svg>
+                                </div>
+                                
+                                <div class="px-4 py-2">
+                                    <div>
+                                        <span class="font-semibold text-emerald-500 dark:text-emerald-400">
+                                            Success
+                                        </span>
+                                        <p class="text-sm text-gray-600">
+                                            Your video is ready for upload!
+                                        </p>
+                                        <p class="text-sm text-gray-600">
+                                            File Type: 
+                                            <span class="underline">
+                                                {{ videoType }}
+                                            </span>
+                                        </p>
+                                        <p class="text-sm text-gray-600">
+                                            Size: 
+                                            <span class="font-bold">
+                                                {{ videoSize | getMb }}
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-1 text-gray-800 col-span-full sm:col-span-5">
+                            <label for="files" class="block text-sm font-medium">
+                                Select a Thumbnail
+                            </label>
+                            <div class="flex">
+                                <div class="grid grid-cols-4 space-x-2">
+                                    <div *ngFor="let thumb of thumbNails; let i = index" [attr.data-index]="i">
+                                        <img (click)="thumbSelect($event, i)" id="thumb-select-{{ i }}" class="cursor-pointer border border-2 border-transparent active:border-black focus:border-black" src="{{ thumb }}?w=50&h=50" />
+                                    </div>
+                                </div>
+                                <input required type="hidden" name="file-thumb" id="video-thumbnail" [value]="thumbSelected" class="w-full px-8 py-12 border-2 border-dashed rounded-md border-gray-300 text-gray-600 bg-gray-100">
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+            </fieldset>
+            <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm bg-gray-50">
+                <div class="space-y-2 col-span-full lg:col-span-1">
+                    <p class="font-medium">
+                        Upload Your Video
+                    </p>
+                    <p></p>
+                </div>
+                <div class="col-span-full sm:col-span-3">
+                    <div class="text-gray-800 col-span-full sm:col-span-5">
+                        <ng-container *ngIf="canUpload; then submitButton; else disabledButton"></ng-container>
+                        <ng-template #submitButton>
+                            <!--<input type="submit" class="p-2 border hover:bg-gray-900 hover:text-white" value="Upload Video" />-->
+                            <button type="submit" mat-raised-button>
+                                Upload Video
+                            </button>
+                        </ng-template>
+                        <ng-template #disabledButton>
+                            <!--<input disabled type="button" class="p-2 border bg-gray-300" value="Upload Video" />-->
+                            <button disabled mat-raised-button>
+                                Upload Video
+                            </button>
+                        </ng-template>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</article>
