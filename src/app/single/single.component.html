@@ -1,5 +1,66 @@
 <ng-container *ngIf="id">
-    
+    <div class="text-center">
+		<div class="inline-flex video-player">
+			<video
+				id="blz-video-{{ id }}"
+				class="video-js"
+				controls
+				preload="auto"
+				width="720"
+				poster="{{ video.img.poster }}?w=720&h=360"
+				data-setup="{}"
+			>
+					<source src="{{ video.vid.mp4 }}" type="video/mp4" />
+					<!--<source src="MY_VIDEO.webm" type="video/webm" />-->
+
+					<p class="vjs-no-js">
+						To view this video please enable JavaScript, and consider upgrading to a
+						web browser that
+						<a href="https://videojs.com/html5-video-support/" target="_blank"
+							>supports HTML5 video</a
+						>
+					</p>
+			</video>
+		</div>
+		<br />
+		<div class="block">
+			<div class="block max-w-lg relative mx-auto bg-white shadow-lg py-5">
+				<h1 class="text-xl mt-4">
+					{{ video.meta.title }}
+				</h1>
+				<ng-container *ngIf="!descExpanded">
+					<p class="text-md pt-2">
+						{{ video.meta.description | stringLength: 30 }}
+					</p>
+					<br />
+					<button (click)="descExpanded = !descExpanded" class="text-md uppercase mb-2">
+						Show More
+					</button>
+				</ng-container>
+				<ng-container *ngIf="descExpanded">
+					<p class="text-md pt-2 pb-10">
+						{{ video.meta.description }}
+					</p>
+					<br />
+					<button (click)="descExpanded = !descExpanded" class="text-md uppercase mb-2">
+						Show Less
+					</button>
+				</ng-container>
+				<br />
+				<hr />
+				<div class="pt-5 text-center">
+					<button class="inline-flex items-center px-2 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:ring focus:ring-red-300 focus:ring-opacity-80">
+						<svg class="w-5 h-5 mx-1" width="100" height="100" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd" d="M10 3.314C14.438-1.248 25.534 6.735 10 17-5.534 6.736 5.562-1.248 10 3.314z" clip-rule="evenodd"/>
+						</svg>
+						<span class="mx-1">
+							Favorite
+						</span>
+					</button>
+				</div>
+			</div>
+		</div>
+  </div>
 </ng-container>
 <ng-container *ngIf="!id">
 	<!--

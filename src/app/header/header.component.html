@@ -1,4 +1,4 @@
-<header class="p-4 bg-coolGray-100 text-coolGray-800">
+<header class="pt-3 lg:p-4 lg:pb-0 lg:mb-4 bg-gray-100 border-b border-gray-900 lg:border-transparent text-coolGray-800">
 	<div class="container flex justify-between h-16 mx-auto mb-5">
 		<a title="Blazed Watch" rel="noopener noreferrer" href="/home" aria-label="Back to homepage" class="flex items-center p-2 hover:opacity-75">
             <img src="https://blazed.sirv.com/logo/Beaker-Dark.png?w=50&h=50" />
@@ -20,7 +20,7 @@
 		</button>
 	</div>
 	<ng-container *ngIf="burgerVisible">
-		<div class="header-menu-mobile">
+		<div class="absolute bg-gray-100 w-full h-full header-menu-mobile">
 			<app-nav></app-nav>
 		</div>
 	</ng-container>

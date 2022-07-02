@@ -57,7 +57,7 @@ import {MatButtonModule} from '@angular/material/button';
     StringLengthPipe,
     GetMbPipe,
     FavoritesComponent,
-    NotificationsComponent
+    NotificationsComponent,
   ],
   imports: [
     BrowserModule,
